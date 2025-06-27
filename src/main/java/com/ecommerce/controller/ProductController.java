@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.service.ProductService;
+
+import jakarta.validation.Valid;
+
 import java.util.List;
 @RestController
 @RequestMapping("/api/products")
@@ -20,7 +23,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product){
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
         Product savedProduct=productService.saveProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
